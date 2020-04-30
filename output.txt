@@ -1,0 +1,458 @@
+building
+castle
+pylon
+lighthouse
+skyscraper
+minaret
+eiffel tower
+pillar
+bridge
+spire
+watchtower
+structure
+steeple
+control tower
+bell tower
+edifice
+dome
+turret
+loom
+hulk
+column
+construction
+silo
+ziggurat
+church tower
+cathedral
+fortress
+roof
+facade
+cupola
+staircase
+palace
+monument
+storey
+arches
+atrium
+plaza
+walkway
+floors
+pier
+stairway
+clock tower
+cn tower
+predominate
+tugboat
+tug
+toronto
+towboat
+height
+rise
+beacon
+boat
+rear
+lift
+hoodoo
+columella
+shape
+form
+helm
+pharos
+barbican
+world trade center
+guy-wires
+radio
+towers
+signal box
+barbacan
+high-rise
+babylon
+gate
+broch
+built
+scotland
+constructed
+entrance
+phoenicia
+buildings
+etemenanki
+erected
+walls
+adjacent
+octagonal
+wall
+enclosed
+hangar
+tallest
+brick
+deck
+mogador
+nonbuilding structure
+window
+courtyard
+atop
+castellated
+terrace
+rebuilt
+overlooking
+statue
+guyed mast
+demolished
+crypt
+gatehouse
+located
+floor
+chapel
+space
+opened
+façade
+stone
+balcony
+terminal
+gates
+marble
+gallery
+housed
+nave
+mansion
+doors
+walled
+tunnel
+hotel
+main
+beneath
+rectangular
+street
+houses
+circular
+square
+blocks
+stands
+chancel
+croatia
+glass
+renovated
+installed
+wooden
+eiffel
+sits
+above
+floating
+basement
+gothic
+majestic
+station
+citadel
+doorway
+near
+avenue
+arch
+concourse
+towerhouse
+clock towers
+shot tower
+supporting tower
+space needle
+mooring tower
+tower block
+beacon light
+power pylon
+mooring mast
+gazebo
+three-story
+capitol
+ppna wall of jericho
+church
+two-story
+presbytery
+sumerian architecture
+build
+four-story
+ziggurat of ur
+prefab
+battlemented
+minster
+art and architecture of assyria
+entablature
+christchurch
+pagoda
+donjon
+tibet
+observatory
+cairn
+paris
+nancy
+versailles
+bastille
+downtown
+monumental
+barcelona
+transept
+outbuilding
+york
+montreal
+tearoom
+urbs
+boathouse
+kurgan
+parthenon
+cemetery
+regina
+nottingham
+cafe
+sunderland
+ecclesia
+cambridge
+pompeii
+newcastle
+pimlico
+hannover
+genoa
+grenoble
+salford
+baltimore
+exeter
+architecture
+leicester
+aviary
+milan
+coventry
+ferrara
+basilica
+hamburg
+dortmund
+brighton
+peterborough
+lancaster
+turin
+tall
+sur
+strasbourg
+brescia
+bolzano
+herculaneum
+palermo
+whorehouse
+halle
+essen
+liverpool
+brindisi
+builder
+sheffield
+zurich
+metropolitan
+marina
+basel
+weimar
+leipzig
+veranda
+lyon
+swansea
+aachen
+bremen
+trento
+glasgow
+pisa
+lübeck
+dusseldorf
+chemnitz
+southampton
+stuttgart
+bricklayer
+messina
+mannheim
+porto
+heidelberg
+auckland
+crosstown
+borough
+thessaloniki
+potsdam
+guangzhou
+megabuilding
+campanile
+skyline
+masts
+highrise
+spiers
+flagpole
+belfry
+scaffolding
+crane
+antennas
+obelisk
+rooftop
+substation
+heliport
+smokestack
+repeater
+windmill
+belvedere
+monolith
+mansard
+galleria
+turbine
+ledge
+transmitter
+hilltop
+treetops
+townhouses
+condos
+superstructure
+condominiums
+treehouse
+skylight
+hangars
+elevator
+parapets
+overpass
+fountain
+ceilings
+cornice
+wtc
+monopoles
+skyway
+derrick
+transformer
+ancient rome
+builtscape
+buildering
+buildable
+superstruct
+bridgebuilding
+high rise
+etruscans
+newbuilding
+edificant
+diocletian's palace
+cullis
+underbuild
+skyscrapers
+facadectomy
+lotusland
+cadiz, spain
+servian walls
+inbuild
+roofscape
+bigging
+outport
+fulda
+aurelian walls
+skywalk
+entranceway
+crenellations
+superblock
+streetlamp
+gasometer
+cantilevering
+get bomb
+empire state build
+great wall of china
+dental office
+book office
+very tall
+tyrrhenians
+government build
+tall build
+qin dynasty
+large build
+vienna
+towers in medieval fortifications
+town hall
+radio studio
+leaning tower of pisa
+dentist office
+television studio
+city hall
+pisa, italy
+two towers, bologna
+bus station
+record library
+registry office
+fix freestanding structure
+bologna, italy
+board room
+mural crown
+mosque
+many window
+himalayan towers
+wed chapel
+light grid
+canada
+iran
+westminster abbey
+build in
+office space
+telephone booth
+doctor office
+medical build
+row house
+old english
+hunky punk
+man make structure
+custom house
+tower of london
+sperm bank
+well build
+subway station
+old french
+electronics store
+school build
+dome arch
+st david's
+st asaph
+farm build
+beauty salon
+restaurant entrance
+church bell
+concrete jungle
+proto-indo-european language
+urban area
+grind floor
+fire alarm horn
+chapter house
+christian fundamentalist
+cathedral city
+steel cable
+at church
+place of worship
+bride of sea
+seismic performance
+la spezia
+illyrian language
+city center
+big build
+newcastle upon tyne
+le havre
+twin towers
+chimney stack
+pedestrian bridge
+ferris wheel
+elevator shaft
+spiral staircase
+observation tower
+retaining wall
+mansard roof
+square foot
+pine tree
+dormer window
+hipped roof
+wind farm
+gambrel roof
+truss bridge
+leaning tower
+lydian language
+tuned mass damper
+united kingdom
+united states
+petronas twin towers
+kuala lumpur
+defensive walls
+siege tower
+storage silo
+water tower
+drilling tower
+suspension bridge
+cable-stayed bridge
+ski jumping
+radio mast
