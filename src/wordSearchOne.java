@@ -12,14 +12,15 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+/*
+ * Creates the word search puzzle
+ */
 @SuppressWarnings("serial")
 public class wordSearchOne extends JFrame {
     
     private ArrayList<ArrayList<wBlock>> puzzle;
     private ArrayList<String> words;
     private wBlock tempBlock;
-    private int numWords;
-    private int numWordsFound;
     private ArrayList<Point> pressed = new ArrayList<Point>();
     private String a;
     private String b;
@@ -33,14 +34,19 @@ public class wordSearchOne extends JFrame {
     private String wordList;
     private boolean testMode;
     
+    /*
+     * Checks if all words are found then lets user know that game is over
+     */
     private void checkAndUpdate() {
-    	
-    	if (numWordsFound >= numWords) {
-    		//game over
+    	if (words.size() == 0) {
+    		JOptionPane.showMessageDialog(wordSearchOne.this, new JLabel("<html><hr><>All Words Found</i><br>Puzzle Complete"));
     	}
-    	
     }
     
+    /*
+     * Checks if currently selected letters are horizontal
+     * @return boolean if letters are horizontal
+     */
     private boolean goodH() {
     	tempX = (int)pressed.get(0).getX();
     	for (int i = 1; i < pressed.size(); i++) {
@@ -67,6 +73,10 @@ public class wordSearchOne extends JFrame {
     	return true;
     }
     
+    /*
+     * Checks if currently selected letters are vertical
+     * @return boolean if letters are vertical
+     */
     private boolean goodV() {
     	tempY = (int)pressed.get(0).getY();
     	for (int i = 1; i < pressed.size(); i++) {
@@ -93,6 +103,10 @@ public class wordSearchOne extends JFrame {
     	return true;
     }    
     
+    /*
+     * Checks if selected letters are in a straight line formation
+     * @return boolean if letters are lined up
+     */
     private boolean inAGoodLine() {
     	setup = -1;
     	if (goodH()) {
@@ -106,6 +120,10 @@ public class wordSearchOne extends JFrame {
     	return false;
     }
     
+    /*
+     * Removes the Point coordinates for a wBlock in pressed if the wBlock is already selected
+     * @return boolean if Point was removed from pressed
+     */
     private boolean removePoint(int x, int y) {
     	for (int i = 0; i < pressed.size(); i++) {
     		if (pressed.get(i).getX() == x && pressed.get(i).getY() == y) {
@@ -116,6 +134,10 @@ public class wordSearchOne extends JFrame {
     	return false;
     }
     
+    /*
+     * Checks if selected letters are lined up using inAGoodline()
+     * @return boolean if selected letters are lined up
+     */
     private boolean orderPressed() {
     	if (inAGoodLine()) {
     		if (setup == 0) {
@@ -133,6 +155,9 @@ public class wordSearchOne extends JFrame {
     	}
     }
     
+    /*
+     * Informs each selected letter (wBlock) that it is part of a found word
+     */
     private void foundAWord() {
     	for (Point p : pressed) {
     		puzzle.get((int)p.getX()).get((int)p.getY()).hasFound();
@@ -140,6 +165,9 @@ public class wordSearchOne extends JFrame {
     	pressed.clear();
     }
     
+    /*
+     * Checks if currently selected letters match a word
+     */
     private void checkIfWord() {
     	a = "";
     	b = "";
@@ -171,6 +199,10 @@ public class wordSearchOne extends JFrame {
     	}
     }
     
+    /*
+     * Returns a string of remaining undiscovered words in puzzle
+     * @return String of remaining words
+     */
     private String remainingWordsString() {
     	wordList = "";
     	if (words.size() != 0) {
@@ -182,6 +214,10 @@ public class wordSearchOne extends JFrame {
     	return wordList;
     }
     
+    /*
+     * Test method that prints out the puzzle to the console
+     * @param z ArrayList<ArrayList<wBlock>> puzzle data
+     */
     private void testPrintA(ArrayList<ArrayList<wBlock>> z) {
     	System.out.println("");
     	for (int x = 0; x < z.size(); x++) {
@@ -193,6 +229,10 @@ public class wordSearchOne extends JFrame {
     	}
     }
     
+    /*
+     * Test method that prints out a lists of words
+     * @param r ArrayList<String> lists of words
+     */
     private void testPrintB(ArrayList<String> r) {
     	System.out.println("");
     	for (String g : r) {
@@ -200,11 +240,18 @@ public class wordSearchOne extends JFrame {
     	}
     }
     
+    /*
+     * Test method that prints out the puzzle's dimensions
+     * @param z ArrayList<ArrayList<wBlock>> puzzle data
+     */
     private void testPrintC(ArrayList<ArrayList<wBlock>> z) {
     	System.out.println("");
     	System.out.println(z.size() + " by " + z.get(0).size());
     }
     
+    /*
+     * Test method that prints out currently selected wBlock coordinates
+     */
     private void testPrintD() {
     	System.out.println();
     	for (Point p : pressed) {
@@ -212,6 +259,9 @@ public class wordSearchOne extends JFrame {
     	}
     }
     
+    /*
+     * Test method that prints out all wBlock coordinates
+     */
     private void testPrintE() {
     	for (int i = 0; i < puzzle.size(); i++) {
     		for (int j = 0; j < puzzle.get(0).size(); j++) {
@@ -221,87 +271,64 @@ public class wordSearchOne extends JFrame {
     	}
     }
     
+    /*
+     * Closes puzzle game
+     */
     private void finsishPartB() {
     	this.dispose();
     }
     
+    /*
+     * Constructor for puzzle game
+     */
     public wordSearchOne(ArrayList<ArrayList<wBlock>> wordSearchData, ArrayList<String> w, String topic, boolean tMode) {
-        
     	words = w;
-        numWords = w.size();
-        numWordsFound = 0;
         puzzle = wordSearchData;
         testMode = tMode;
-        
         if (testMode) {
         	testPrintA(wordSearchData);
         	testPrintB(w);
         	testPrintC(wordSearchData);
             testPrintE();
         }
-        
         setTitle(topic + " Word Search");
-        
         JMenuBar menu = new JMenuBar();
         setJMenuBar(menu);
-        
         JMenu words = new JMenu("Game");
         menu.add(words);
-        
         ActionListener pressLetter = new ActionListener() {
         	@Override
         	public void actionPerformed(ActionEvent e) {
-        		
         		tempBlock = (wBlock)e.getSource();
-        		
         		tempX = tempBlock.obtainX();
         		tempY = tempBlock.obtainY();
-        		
         		tempBlock.press();
-        		
         		if (!removePoint(tempBlock.x, tempBlock.y)) {
         			pressed.add(new Point(tempX,tempY));
         		}
-        		
         		if (pressed.size() > 0) {
         			checkIfWord();
         		}
-        		
         		checkAndUpdate();
-        		
         		if (testMode) {
         			testPrintD();
         		}
-        		
-        		
-        		
-        		/*
-        		if (tempBlock.count != 0) {
-        			System.out.println("presssss");//testing
-        		}
-        		puzzle.get(2).get(2).setBackground(Color.CYAN);//testing
-        		tempBlock.setBackground(Color.CYAN);//testing
-        		*/
         	}
         };
-        
         JMenuItem showWords = words.add("Word List");
         showWords.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent event) {
         		JOptionPane.showMessageDialog(wordSearchOne.this, new JLabel(remainingWordsString()));
         		}
         	});
-        
         JMenuItem end = words.add("Quit");
         end.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent event) {
         		finsishPartB();
         		}
         	});
-        
         JPanel game = new JPanel(new GridLayout(puzzle.size(),puzzle.size()));
         add(game);
-        
         for (int x = 0; x < puzzle.size(); x++) {
             for (int y = 0; y < puzzle.get(0).size(); y++) {
                 tempBlock = puzzle.get(x).get(y);
@@ -309,14 +336,12 @@ public class wordSearchOne extends JFrame {
                 game.add(tempBlock);
             }
         }
-        
         pack();
         setSize(750,750);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setVisible(true);
-    
     }
     
 }

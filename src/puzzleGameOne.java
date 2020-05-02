@@ -14,6 +14,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/*
+ * Prepares content for puzzle
+ */
 @SuppressWarnings("serial")
 public class puzzleGameOne extends JFrame {
     
@@ -23,10 +26,10 @@ public class puzzleGameOne extends JFrame {
     JLabel inputTitle;
     private int longestStringLength;
     private final int maxPermittedWordLength = 10 - 1;
-    private final int maxWordLimit = 10;
+    private final int maxWordLimit = 25;
     private final int minWordLimit = 5;
     private final int loadTimeDelay = 5;
-    private final boolean testMode = true;
+    private final boolean testMode = false;
     private ArrayList<String> usedWords;
     private ArrayList<String> wordsToRemove;
     private Random pickDirection = new Random();
@@ -34,7 +37,9 @@ public class puzzleGameOne extends JFrame {
     private ArrayList<Character> randomChar = new ArrayList<Character>(Arrays.asList('a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'));
     private customWarning customWarn;
 
-    
+    /*
+     * Runs methods for gathering words for puzzle
+     */
     private void getData() throws IOException, InterruptedException {
     	File_IO.setInput(searchTopic);
     	customWarn = new customWarning("Loading: Please Wait");
@@ -43,6 +48,10 @@ public class puzzleGameOne extends JFrame {
     	data = File_IO.getOutput();
     }
     
+    /*
+     * Checks if gathered data is sufficient
+     * @return boolean if data passes conditions
+     */
     private boolean checkData() {
     	if (data == null || data.isEmpty() || data.size() == 0) {
     		return false;
@@ -55,10 +64,21 @@ public class puzzleGameOne extends JFrame {
     	}
     }
     
+    /*
+     * Hides the input panel
+     */
     private void hideIntro() {
         setVisible(false);
     }
     
+    /*
+     * Attempts to place a word into the puzzle
+     * @param s String of word to place
+     * @param d direction to put word
+     * @param y int coordinate to check in puzzle
+     * @param x int coordinate to check in puzzle
+     * @return boolean if word was successfully placed
+     */
     private boolean corDist(String s, String d, int y, int x) {
         int l = s.length();
         boolean fit = true;
@@ -67,7 +87,7 @@ public class puzzleGameOne extends JFrame {
             fit = true;
             wordIndex = 0;
             if (l <= puzzle.get(y).size() - x) {
-                for (int a = x; (a < puzzle.get(y).size() && a < l + x && wordIndex < l); a++) {//?
+                for (int a = x; (a < puzzle.get(y).size() && a < l + x && wordIndex < l); a++) {
                     if (puzzle.get(y).get(a) == null || s.charAt(wordIndex) == puzzle.get(y).get(a).value) {
                         wordIndex++;
                     }
@@ -78,7 +98,7 @@ public class puzzleGameOne extends JFrame {
                 }
                 wordIndex = 0;
                 if (fit) {
-                    for (int a = x; (a < puzzle.get(y).size() && a < l + x && wordIndex < l ); a++) {//?
+                    for (int a = x; (a < puzzle.get(y).size() && a < l + x && wordIndex < l ); a++) {
                         if (puzzle.get(y).get(a) == null) {
                             puzzle.get(y).set(a, new wBlock(s, y, a, d, wordIndex));
                         }
@@ -92,7 +112,7 @@ public class puzzleGameOne extends JFrame {
         	fit = true;
             wordIndex = 0;
             if (l <=  y) {
-                for (int a = y; (a >= 0 && a > y - l && wordIndex < l); a--) {//?
+                for (int a = y; (a >= 0 && a > y - l && wordIndex < l); a--) {
                     if (puzzle.get(a).get(x) == null || s.charAt(wordIndex) == puzzle.get(a).get(x).value) {
                         wordIndex++;
                     }
@@ -103,7 +123,7 @@ public class puzzleGameOne extends JFrame {
                 }
                 wordIndex = 0;
                 if (fit) {
-                    for (int a = y; (a >= 0 && a > y - l && wordIndex < l); a--) {//?
+                    for (int a = y; (a >= 0 && a > y - l && wordIndex < l); a--) {
                         if (puzzle.get(a).get(x) == null) {
                             puzzle.get(a).set(x, new wBlock(s, a, x, d, wordIndex));
                         }
@@ -117,7 +137,7 @@ public class puzzleGameOne extends JFrame {
         	fit = true;
             wordIndex = 0;
             if (l <= puzzle.get(y).size() - y) {
-                for (int a = y; (a < puzzle.get(y).size() && a < l + y && wordIndex < l); a++) {//?
+                for (int a = y; (a < puzzle.get(y).size() && a < l + y && wordIndex < l); a++) {
                     if (puzzle.get(a).get(x) == null || s.charAt(wordIndex) == puzzle.get(a).get(x).value) {
                         wordIndex++;
                     }
@@ -128,7 +148,7 @@ public class puzzleGameOne extends JFrame {
                 }
                 wordIndex = 0;
                 if (fit) {
-                    for (int a = y; (a < puzzle.get(y).size() && a < l + y && wordIndex < l); a++) {//?
+                    for (int a = y; (a < puzzle.get(y).size() && a < l + y && wordIndex < l); a++) {
                         if (puzzle.get(a).get(x) == null) {
                             puzzle.get(a).set(x, new wBlock(s, a, x, d, wordIndex));
                         }
@@ -169,11 +189,15 @@ public class puzzleGameOne extends JFrame {
         return false;
     }
     
+    /*
+     * Picks a random direction for word and tries to place it through corDist()
+     * @param s String word to put in puzzle
+     * @param x int coordinate to place word in puzzle
+     * @param y int coordinate to place word in puzzle
+     * @return boolean if placement was successful
+     */
     private boolean checkAdded(String s, int x, int y) {
-        //check up
     	randomDirection = pickDirection.nextInt((3 - 0) + 1) + 0;
-    	
-    	
         if (randomDirection == 0 && corDist(s, "U", x, y)) {
             return true;
         }
@@ -186,10 +210,14 @@ public class puzzleGameOne extends JFrame {
         else if (randomDirection == 3 && corDist(s, "R", x, y)) {
         	return true;
         }
-        
         return false;
     }
     
+    /*
+     * Attempts to place a word at each coordinate through checkAdded()
+     * @param s String word to put in puzzle
+     * @return boolean if word was placed
+     */
     private boolean isWordAdded(String s) {
         for (int x = 0; x < puzzle.size(); x++) {
             for (int y = 0; y < puzzle.get(0).size(); y++) {
@@ -201,8 +229,9 @@ public class puzzleGameOne extends JFrame {
         return false;
     }
     
-    //puts words from data list
-    //into puzzle matrix
+    /*
+     * Tries to place each word into the puzzle
+     */
     private void convertData() {
     	usedWords = new ArrayList<String>();
         for (String s : data) {
@@ -215,6 +244,10 @@ public class puzzleGameOne extends JFrame {
         }
     }
     
+    /*
+     * Gets a random character
+     * @return char that is a random letter of the alphabet
+     */
     private char getRandomLetter() {
     	if (testMode) {
     		return ' ';
@@ -224,6 +257,9 @@ public class puzzleGameOne extends JFrame {
     	}
     }
     
+    /*
+     * Fills blank spots in puzzle with random characters
+     */
     private void fillBlank() {
         for (int x = 0; x < puzzle.size(); x++) {
             for (int y = 0; y < puzzle.get(x).size(); y++) {
@@ -234,6 +270,10 @@ public class puzzleGameOne extends JFrame {
         }
     }
     
+    /*
+     * Removes a word from data
+     * @param t String word to remove
+     */
     private void removeWordsB(String t) {
     	int r = -1;
     	for (int i = 0; i < data.size(); i++) {
@@ -250,12 +290,19 @@ public class puzzleGameOne extends JFrame {
     	}
     }
     
+    /*
+     * Removes each word in wordsToRemove from data using removeWordsB()
+     */
     private void removeWordsA() {
     	for (String s : wordsToRemove) {
     		removeWordsB(s);
     	}
     }
     
+    /*
+     * Checks if input is valid and informs the user if it is not
+     * @param s String input to check if valid
+     */
     private boolean isValidInput(String s) {
     	if (s == null || s.equals("")) {
     		JOptionPane.showMessageDialog(puzzleGameOne.this, new JLabel("<html><hr><>Invalid Input</i><br>Topic cannot be blank"));
@@ -266,6 +313,9 @@ public class puzzleGameOne extends JFrame {
     	}
     }
     
+    /*
+     * Builds a blank puzzle of appropriate size
+     */
     private void buildBlankPuzzle() {
         longestStringLength = 0;
         wordsToRemove = new ArrayList<String>();
@@ -286,6 +336,10 @@ public class puzzleGameOne extends JFrame {
         }
     }
     
+    /*
+     * Attempts to build a puzzle using the user's input
+     * @return boolean if puzzle was made
+     */
     private boolean manage() {
         puzzle = new ArrayList<ArrayList<wBlock>>();
         try {
@@ -307,26 +361,26 @@ public class puzzleGameOne extends JFrame {
         }
     }
     
+    /*
+     * Disposes of input panel
+     */
     private void finsishPartA() {
     	this.dispose();
     }
     
+    /*
+     * Constructor of JPanel that accepts user input for search topic
+     */
     public puzzleGameOne() {
-    	
     	setTitle("Word Search");
-        
         JPanel inputTopic = new JPanel(new FlowLayout(FlowLayout.CENTER,10,5));
         add(inputTopic);
-        
         inputTitle = new JLabel("Input Topic");
         inputTopic.add(inputTitle);
-        
         JTextField input = new JTextField(20);
         inputTopic.add(input);
-        
         JButton startButton = new JButton("Start");
         inputTopic.add(startButton);
-        
         ActionListener startButtonListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -356,6 +410,9 @@ public class puzzleGameOne extends JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     
+    /*
+     * Main method that begins program
+     */
     public static void main(String[] args) {
         JFrame frame = new puzzleGameOne();
         frame.setVisible(true);

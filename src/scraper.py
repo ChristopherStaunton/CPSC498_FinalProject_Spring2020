@@ -2,17 +2,14 @@
 from bs4 import BeautifulSoup
 from lxml import html
 import requests
-
 import sys
 
-# Global Variables
-# list of results
 results = []
-# which search methods are available
 searchD = True
 outFile = "output.txt"
 inFile = "input.txt"
 
+# Puts found words into output file
 def putResultsInFile():
     global outFile
     output_File = open(outFile, "w")
@@ -20,7 +17,7 @@ def putResultsInFile():
         output_File.write(w)
     output_File.close()
         
-
+# Cleans results
 def organizeMethodDOutput():
     print("|organizing results...")
     global outFile
@@ -45,15 +42,9 @@ def organizeMethodDOutput():
             preWordCounter = preWordCounter + 1
         lineCounter = lineCounter + 1
     output_File.close()
-#    putResultsInFile()
     printResults()
 
-
-# Search a web site that finds related words
-# Still being worked on
-# Issues with flexbox
-# stable / effective / numerous
-# https://relatedwords.org/
+# Gathers words based on topic from relatedwords.org
 def searchMethodD(topic):
     print("|starting search method D...")
     global outFile
@@ -64,60 +55,35 @@ def searchMethodD(topic):
     output_File.close()
     organizeMethodDOutput()
 
-
-# Determines if results are sufficient
-# Currently only return true for testing purposes
-# Incomplete
-def areResultsGood():
-    return True
-
-
 # Prints current results
 def printResults():
     print("|printing results")
     for a in results:
         print(a)
 
-
-# Clean results array of extra unnecessary characters
-# Incomplete
-# Waiting until search methods are complete
-def cleanResults():
-    print()
-
-
-# Selects next search method
+# Selects search method
 def search(sTopic, sType, sInput):
     print("|choosing search method...")
     global searchD
     resultsFound = False
     if sType == 'd' and searchD:
         searchMethodD(sTopic)
-        resultsFound = areResultsGood()
+        resultsFound = True
         searchD = False
     elif searchD:
         searchMethodD(sTopic)
-        resultsFound = areResultsGood()
+        resultsFound = True
         searchD = False
     return True;
 
-
-# Start of program
+# Prepares for search
 def programStart(searchTopic, searchType, searchInput):
     print("|preparing...")
     searchesDone = False
     while not searchesDone:
         searchesDone = search(searchTopic, searchType, searchInput)
 
-#def main():
-#    global inFile
- #   input_file = open(inFile, "r")
-  #  aSearchTerm = input_file.read()
-   # input_file.close()
-    #programStart(aSearchTerm, 'd', 0)
-
-# Tests
-# printResults()
+# Gathers input for search
 print("|started")
 input_file = open(inFile, "r")
 aSearchTerm = input_file.read()

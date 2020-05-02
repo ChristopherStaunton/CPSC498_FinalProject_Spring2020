@@ -3,50 +3,50 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-//individual block in puzzle matrix
+/*
+ * Individual JButton blocks that make up letters in word search puzzle
+ */
 @SuppressWarnings("serial")
 public class wBlock extends JButton {
-    //character shown
+	
     protected char value;
-    //coordinates
     protected int x, y;
-    //if part of actual word in puzzle
     protected boolean answer;
-    // U, uR, R, dR, D, lD, L, uL
     protected String direction;
-    //length of total word
     protected ArrayList<Integer> l;
-    //the total word
     protected ArrayList<String> words;
-    //index in total string
     protected ArrayList<Integer> indexes;
-    //number of words used for in puzzle
-    protected int count;
-    //if already pressed
     protected boolean alreadyPressed = false;
-    //if part of found word
     protected boolean found = false;
     
+    /*
+     * Adjusts wBlock for when it is part of a found word
+     */
     public void hasFound() {
     	found = true;
     	setBackground(Color.GREEN);
     	alreadyPressed = false;
     }
     
-    public void upUse() {
-        count++;
-    }
-    
+    /*
+     * Gets x coordinate for wBlock
+     * @return int x coordinate
+     */
     public int obtainX() {
     	return x;
     }
     
+    /*
+     * Gets y coordinate for wBlock
+     * @return int y coordinate
+     */
     public int obtainY() {
     	return y;
     }
     
-    //find/found word method
-    
+    /*
+     * Alters wBlock for when JButton is clicked on
+     */
     public void press() {
     	if (alreadyPressed && found) {
     		setBackground(Color.GREEN);
@@ -66,12 +66,23 @@ public class wBlock extends JButton {
     	}
     }
     
+    /*
+     * Initializes main variables
+     */
     private void startUpVar() {
         l = new ArrayList<Integer>();
         words = new ArrayList<String>();
         indexes = new ArrayList<Integer>();
     }
     
+    /*
+     * Constructor for wBlocks that are part of words
+     * @param word String of word wBlock is part of
+     * @param x int coordinate in puzzle
+     * @param y int coordinate in puzzle
+     * @param direction String of direction word faces
+     * @param index int location of character in word that wBlock displays
+     */
     public wBlock(String word, int x, int y, String direction, int index) {
         super("" + (word.charAt(index)));
         startUpVar();
@@ -83,9 +94,14 @@ public class wBlock extends JButton {
         l.add(word.length());
         words.add(word);
         indexes.add(index);
-        count = 1;
     }
     
+    /*
+     *Constructor for wBlocks that hold a random character
+     *@param letter char that wBlock displays
+     *@param x int coordinate in puzzle
+     *@param y int coordinate in puzzle
+     */
     public wBlock(char letter, int x, int y) {
         super("" + letter);
         startUpVar();
@@ -97,7 +113,6 @@ public class wBlock extends JButton {
         l = null;
         words = null;
         indexes = null;
-        count = 0;
     }
     
 }

@@ -6,6 +6,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+ * Accesses the input and output files and calls for the scraper
+ */
 public class File_IO {
 	
 	final private static String inputFile = "input.txt";
@@ -17,6 +20,10 @@ public class File_IO {
 	static Scanner s;
 	static FileReader out = null;
 	
+	/*
+	 * Prints search topic into input file
+	 * @param t String search topic
+	 */
 	public static void setInput(String t) throws IOException {
 		inputStream = new PrintWriter(new FileWriter(inputFile));
 		inputStream.print(t);
@@ -25,10 +32,17 @@ public class File_IO {
 		}
 	}
 	
+	/*
+	 * Calls method for running scraper
+	 */
 	public static void runScraper() throws IOException {
 		runPython.runScraperPython();
 	}
 	
+	/*
+	 * Gathers content from output file in form of ArrayList<String>
+	 * @return ArrayList<String> containing content in output file
+	 */
 	public static ArrayList<String> getOutput() throws IOException {
 		outputStream = new BufferedReader(new FileReader(outputFile));
 		while ((line = outputStream.readLine()) != null) {
