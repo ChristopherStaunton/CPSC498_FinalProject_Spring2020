@@ -11,6 +11,7 @@ Windows:
 	I believe my windows java might be out of date.
 
 Eclipse:
+	Clone to Eclipse.
 	Run 'puzzleGameOne.java' file under src folder.
 	PyDev plugin may be required.
 	Has not been tested on other computers.
